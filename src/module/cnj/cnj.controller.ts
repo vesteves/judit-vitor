@@ -64,9 +64,15 @@ class CNJController {
             })
         }
 
-        cnj.save()
+        try {
+            await cnj.save()
 
-        return cnj
+            return cnj
+        }
+        catch (error: any) {
+            throw new Error(`Error while trying to update a CNJ: ${JSON.stringify(error)}`);
+
+        }
     }
 
 }

@@ -13,7 +13,10 @@ class CNJRepository {
     }
 
     public find(params: any = {}) {
-        return this.model.find(params)
+        return this.model.find(params).populate({
+            path: 'lists.listRef',
+            select: 'name'
+        })
     }
 
     public findOne(params: any = {}) {
