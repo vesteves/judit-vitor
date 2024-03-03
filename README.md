@@ -19,3 +19,18 @@ Crio um _docker_compose.yml_ para deixar disponível 2 containers:
 
 - judit-mongo: serviço do mongo;
 - judit-express-mongo: interface gráfica para acesso ao mongo;
+
+Escolho a estrutura de Repository, Controller, Model, Factory, Service e Route para os módulos criados.
+
+Crio 2 mongoose Schema onde um será para a listas e outro para o CNJ.
+
+Toda a estrutura foi criada na mão sem utilização de boilerplate.
+
+## Débitos técnicos por falta de tempo
+
+- Não criei testes unitários;
+- Não validei os inputs. Pretendia instalar o Zod;
+- Não iniciei o eslint;
+- Não coloquei o node como container no docker-compose;
+- Não criei um fluxo de deploy da aplicação;
+- Não criei migrations para inserir automaticamente, no primeiro load, as listas. Criei apenas uma rota para adicionar manualmente uma à uma;
