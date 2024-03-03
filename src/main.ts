@@ -9,6 +9,7 @@ import { connectDB } from './service/database';
 
 // routes
 import { router as CNJRouter } from '@/module/cnj/cnj.router'
+import { router as ListRouter } from '@/module/list/list.router'
 
 const app = new Koa()
 const router = new Router()
@@ -20,6 +21,7 @@ router.get('/health', async (ctx, _) => {
 app.use(bodyParser())
 app.use(router.routes())
 app.use(CNJRouter.routes())
+app.use(ListRouter.routes())
 
 app.listen(3000, async () => {
     await connectDB()
