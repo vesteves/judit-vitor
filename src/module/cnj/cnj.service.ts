@@ -16,6 +16,10 @@ class CNJService {
         }
         return this.juditService.createRequest(data)
     }
+
+    async checkRequest(param: string) {
+        return this.juditService.checkRequest(param)
+    }
 }
 
 export default new CNJService(new Judit())

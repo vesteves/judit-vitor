@@ -25,6 +25,8 @@ const CNJSchema = new Schema({
 }, { timestamps: true });
 
 CNJSchema.pre('save', function (next) {
+    this.set({ lastStatusDate: new Date() });
+
     if (this.isModified('lists')) {
         this.lists.forEach(list => {
             if (!list.date) {

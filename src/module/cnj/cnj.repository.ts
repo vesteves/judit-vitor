@@ -15,6 +15,10 @@ class CNJRepository {
     public find(params: any = {}) {
         return this.model.find(params)
     }
+
+    public findOne(params: any = {}) {
+        return this.model.findOne(params)
+    }
 }
 
 export default CNJRepository

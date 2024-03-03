@@ -2,6 +2,7 @@ import CNJFactory from './cnj.factory'
 import CNJService from './cnj.service';
 import ListFactory from '@/module/list/list.factory';
 import { CNJCreate } from './cnj.type';
+import { Types } from 'mongoose';
 
 class CNJController {
     private factory: typeof CNJFactory;
@@ -33,7 +34,7 @@ class CNJController {
         }
 
         const data: CNJCreate = {
-            requestId: response.requestId,
+            requestId: response.request_id,
             searchKey: key,
             lastStatus: response.status,
             lists: [{
@@ -42,6 +43,30 @@ class CNJController {
         };
 
         return await this.factory.add(data);
+    }
+
+    async update(_id: Types.ObjectId, listId: Types.ObjectId) {
+        const cnj = await this.factory.findOne({ _id });
+
+        if (!cnj) {
+            throw new Error('CNJ don\'t exists in the database');
+        }
+
+        if (cnj.requestId) {
+            const response = await this.service.checkRequest(cnj.requestId)
+            cnj.lastStatus = response.status
+        }
+
+        if (cnj.lists[cnj.lists.length - 1].listRef?.toString() !== listId.toString()) {
+            cnj.lists.push({
+                listRef: listId,
+                date: new Date(),
+            })
+        }
+
+        cnj.save()
+
+        return cnj
     }
 
 }

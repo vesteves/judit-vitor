@@ -1,9 +1,10 @@
 import Router from "koa-router"
 import CNJController from "./cnj.controller"
 import CNJFactory from "./cnj.factory"
-import { CNJParamsCreate } from './'
+import { CNJParamsCreate, CNJParamsUpdate } from './'
 import CNJService from "./cnj.service"
 import ListFactory from "../list/list.factory"
+import { Types } from "mongoose"
 
 export const router = new Router({
     prefix: '/cnj'
@@ -29,6 +30,23 @@ router.post('/', async (ctx, _) => {
         } = ctx.request.body as CNJParamsCreate;
 
         const data = await controller.add(searchKey);
+
+        ctx.status = 200;
+        ctx.body = data;
+    } catch (error: any) {
+        ctx.status = 500;
+        ctx.body = 'Error while storing CNJ';
+        console.error(error);
+    }
+});
+
+router.put('/:_id', async (ctx, _) => {
+    try {
+        const {
+            listId,
+        } = ctx.request.body as CNJParamsUpdate;
+
+        const data = await controller.update(new Types.ObjectId(ctx.params._id), listId);
 
         ctx.status = 200;
         ctx.body = data;

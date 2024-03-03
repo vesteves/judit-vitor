@@ -37,6 +37,25 @@ class Judit {
             return 'Error while creating request on JUDIT API'
         }
     }
+
+    async checkRequest(requestId: string) {
+        try {
+            const response = await fetch(`${process.env.API_URL}/requests/${requestId}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Accept': 'application/json',
+                    'api-key': process.env.API_KEY || '',
+                },
+            })
+
+            return await response.json()
+        }
+        catch (error: any) {
+            console.log(error)
+            return 'Error while creating request on JUDIT API'
+        }
+    }
 }
 
 export default Judit

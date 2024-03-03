@@ -20,3 +20,7 @@ export interface CNJCreate {
 export interface CNJParamsCreate {
     searchKey: string;
 }
+
+export interface CNJParamsUpdate {
+    listId: Types.ObjectId,
+}
