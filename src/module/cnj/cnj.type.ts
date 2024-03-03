@@ -1,3 +1,5 @@
+import { Types } from "mongoose";
+
 export enum List {
     BACKLOG = 'backlog',
     DISCOVER = 'discover',
@@ -7,10 +9,12 @@ export enum List {
 }
 
 export interface CNJCreate {
-    searchKey: string;
     requestId: string;
+    searchKey: string;
     lastStatus: string;
-    list: List
+    lists: {
+        listRef: Types.ObjectId;
+    }[];
 }
 
 export interface CNJParamsCreate {

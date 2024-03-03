@@ -3,12 +3,13 @@ import CNJController from "./cnj.controller"
 import CNJFactory from "./cnj.factory"
 import { CNJParamsCreate } from './'
 import CNJService from "./cnj.service"
+import ListFactory from "../list/list.factory"
 
 export const router = new Router({
     prefix: '/cnj'
 })
 
-const controller = new CNJController(CNJFactory, CNJService)
+const controller = new CNJController(CNJFactory, CNJService, ListFactory)
 
 router.get('/', async (ctx, _) => {
     try {

@@ -15,6 +15,10 @@ class ListRepository {
     public find(params: any = {}) {
         return this.model.find(params)
     }
+
+    public findOne(params: string = '') {
+        return this.model.findOne({ name: params })
+    }
 }
 
 export default ListRepository
