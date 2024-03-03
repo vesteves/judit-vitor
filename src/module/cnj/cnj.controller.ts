@@ -75,6 +75,10 @@ class CNJController {
         }
     }
 
+    async findCNJsInList(params: any) {
+        return await this.factory.findCNJsInList(params)
+    }
+
 }
 
 export default CNJController

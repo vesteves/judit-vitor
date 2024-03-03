@@ -40,6 +40,17 @@ router.post('/', async (ctx, _) => {
     }
 });
 
+router.get('/list/:listId', async (ctx, _) => {
+    try {
+        const data = await controller.findCNJsInList(ctx.params.listId);
+        ctx.body = data
+    } catch (error) {
+        console.error(error)
+        ctx.status = 500
+        ctx.body = 'Error while fetching List'
+    }
+})
+
 router.put('/:_id', async (ctx, _) => {
     try {
         const {

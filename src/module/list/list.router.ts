@@ -16,7 +16,7 @@ router.get('/', async (ctx, _) => {
     } catch (error) {
         console.error(error)
         ctx.status = 500
-        ctx.body = 'Error while fetching CNJ'
+        ctx.body = 'Error while fetching List'
     }
 })
 
@@ -30,7 +30,7 @@ router.post('/', async (ctx, _) => {
         ctx.body = data;
     } catch (error: any) {
         ctx.status = 500;
-        ctx.body = 'Error while storing CNJ';
+        ctx.body = 'Error while storing List';
         console.error(error);
     }
 });

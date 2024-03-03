@@ -8,8 +8,8 @@ class ListController {
         this.factory = factory
     }
 
-    async find(params: any = {}) {
-        return await this.factory.find(params)
+    async find() {
+        return await this.factory.find()
     }
 
     async add(params: ListParamsCreate) {

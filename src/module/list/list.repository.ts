@@ -1,5 +1,7 @@
 import { ListParamsCreate } from "./list.type";
 import ListModel from './list.model'
+import CNJModel from "../cnj/cnj.model";
+import { Types } from "mongoose";
 
 class ListRepository {
     private model;
@@ -16,8 +18,8 @@ class ListRepository {
         return this.model.find(params)
     }
 
-    public findOne(params: string = '') {
-        return this.model.findOne({ name: params })
+    public findOne(params: any) {
+        return this.model.findOne(params)
     }
 }
 
