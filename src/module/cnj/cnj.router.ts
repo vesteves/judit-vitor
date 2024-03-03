@@ -1,13 +1,14 @@
 import Router from "koa-router"
 import CNJController from "./cnj.controller"
 import CNJFactory from "./cnj.factory"
-import { CNJCreate } from './'
+import { CNJParamsCreate } from './'
+import CNJService from "./cnj.service"
 
 export const router = new Router({
     prefix: '/cnj'
 })
 
-const controller = new CNJController(CNJFactory)
+const controller = new CNJController(CNJFactory, CNJService)
 
 router.get('/', async (ctx, _) => {
     try {
@@ -24,15 +25,9 @@ router.post('/', async (ctx, _) => {
     try {
         const {
             searchKey,
-            requestId,
-            lastStatus
-        } = ctx.request.body as CNJCreate;
+        } = ctx.request.body as CNJParamsCreate;
 
-        const data = await controller.add({
-            searchKey,
-            requestId,
-            lastStatus
-        });
+        const data = await controller.add(searchKey);
 
         ctx.status = 200;
         ctx.body = data;

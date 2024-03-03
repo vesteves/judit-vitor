@@ -6,6 +6,7 @@ const CNJSchema = new Schema({
     searchKey: String,
     requestId: String,
     lastStatus: String,
+    list: String,
     lastStatusDate: {
         type: Date,
         default: new Date()

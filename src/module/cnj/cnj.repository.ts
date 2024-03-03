@@ -12,8 +12,8 @@ class CNJRepository {
         return this.model.create(params)
     }
 
-    public find() {
-        return this.model.find()
+    public find(params: any = {}) {
+        return this.model.find(params)
     }
 }
 
